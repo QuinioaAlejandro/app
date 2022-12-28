@@ -4,8 +4,8 @@ const Main = () => {
     return (
         <main className="main">
         <h2>Home</h2>
-        <img src="https://picsum.photos/200/300"/>
-  <Button>HOLA</Button>
+        <img src="./img/dynamo.jpeg"/>
+  <Button>Comprar</Button>
     </main>
     )
 }

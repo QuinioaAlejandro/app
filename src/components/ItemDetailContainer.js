@@ -1,17 +1,16 @@
 import { useEffect, useState } from "react"
-import ItemList from "./ItemList"
-import { useParams } from "react-router-dom" 
+import ItemDetail from "./ItemDetail"
+import { useParams } from "react-router-dom"
 
-const ItemListContainer = () => {
+const ItemDetailContainer = () => {
 
     const [load, setLoad] = useState(false)
     const [productos,setProductos] = useState([])
     const params = useParams()
-
-
     
-   
     useEffect(() => {
+
+
         const pedido = fetch("https://fakestoreapi.com/products")
 
         pedido
@@ -21,28 +20,26 @@ const ItemListContainer = () => {
 
             })
             .then((productos) => {
-                if (params.id == "femenina"){
-                    const fem = productos.filter(el=> el.category == "women's clothing") 
-                    setProductos(fem)
-
-                }
-                else{setProductos(productos)}
+                setProductos(productos)
                 setLoad(true)
-
             })
             .catch((error) => {
                 console.log(error)
             })
 
-    }, [params])
+    }, [])
+
+    let producto = productos.find(el=> el.id == params.id)
 
     return (
         <>
             {load ? null : 'Cargando...'}
-            <ItemList productos={productos}/>
+            <ItemDetail nombre = {producto.title}
+                precio = {producto.price}
+                imagen = {producto.image}/>
         </>
     )
 }
 
 
-export default ItemListContainer
+export default ItemDetailContainer

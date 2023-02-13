@@ -1,43 +1,74 @@
-import { useEffect, useState } from "react"
+import {useEffect, useState} from "react"
 import ItemDetail from "./ItemDetail"
-import { useParams } from "react-router-dom"
+import {useParams} from "react-router-dom"
+import {db} from "../firebase"
+import {collection, getDoc, doc} from "firebase/firestore"
+import Loader from "./Loader"
+import {useNavigate} from "react-router-dom"
+
 
 const ItemDetailContainer = () => {
-
     const [load, setLoad] = useState(false)
-    const [productos,setProductos] = useState([])
+    const navigate = useNavigate()
+
+    const [producto, setProducto] = useState({})
     const params = useParams()
-    
+
     useEffect(() => {
 
+        const productosCollection = collection(db, "shop")
+        const referencia = doc(productosCollection, params.id)
+        const pedido = getDoc(referencia)
 
-        const pedido = fetch("https://fakestoreapi.com/products")
+        pedido.then((respuesta) => {
+            const producto = respuesta.data()
+            setProducto(producto)
+            setLoad(true)
 
-        pedido
-            .then((respuesta) => {
-                const productos = respuesta.json()
-                return productos
+        }).catch((error) => {
+            navigate("/404")
 
-            })
-            .then((productos) => {
-                setProductos(productos)
-                setLoad(true)
-            })
-            .catch((error) => {
-                console.log(error)
-            })
 
+        })
     }, [])
 
-    let producto = productos.find(el=> el.id == params.id)
 
     return (
-        <>
-            {load ? null : 'Cargando...'}
-            <ItemDetail nombre = {producto.title}
-                precio = {producto.price}
-                imagen = {producto.image}/>
-        </>
+
+        <div> 
+            <div> {
+                load ? <ItemDetail 
+                    genero={
+                        producto.genero
+                    }
+                    formato={
+                        producto.formato
+                    }
+                    año={
+                        producto.año
+                    }
+                    artista={
+                        producto.artista
+                    }
+                    nombre={
+                        producto.titulo
+                    }
+                    precio={
+                        producto.precio
+                    }
+                    imagen={
+                        producto.imagen
+                    }
+                    id={
+                        params.id
+                    }
+                    stock={
+                        producto.stock
+                    }
+                    /> : <Loader/>
+            } </div>
+            
+        </div>
     )
 }
 

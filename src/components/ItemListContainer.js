@@ -1,6 +1,11 @@
 import { useEffect, useState } from "react"
 import ItemList from "./ItemList"
-import { useParams } from "react-router-dom" 
+import { useParams } from "react-router-dom"
+import { db } from "../firebase"
+import { collection, getDocs, query, where } from "firebase/firestore"
+import Loader from "./Loader"
+import { useNavigate } from "react-router-dom"
+
 
 const ItemListContainer = () => {
 
@@ -8,39 +13,44 @@ const ItemListContainer = () => {
     const [productos,setProductos] = useState([])
     const params = useParams()
 
-
+    const navigate = useNavigate()
     
    
     useEffect(() => {
-        const pedido = fetch("https://fakestoreapi.com/products")
+         const coleccion = collection(db, "shop")
+         if (params.id == "all"){
+            const shop = query(coleccion)
+            pedidos(shop)
+         }else {
+            const shop = query(coleccion, where("genero", "==", params.id))
+            pedidos(shop)
+         }
 
-        pedido
-            .then((respuesta) => {
-                const productos = respuesta.json()
-                return productos
+         function pedidos(i){
+            const firestorePedido = getDocs(i)
 
-            })
-            .then((productos) => {
-                if (params.id == "femenina"){
-                    const fem = productos.filter(el=> el.category == "women's clothing") 
-                    setProductos(fem)
-
-                }
-                else{setProductos(productos)}
-                setLoad(true)
-
-            })
-            .catch((error) => {
-                console.log(error)
-            })
+    firestorePedido
+    .then((respuesta) =>{
+        const productos = respuesta.docs.map(doc => ({ ...doc.data(), id: doc.id}))
+        setProductos(productos)
+        setLoad(true)
+    })
+    .catch((error)=> {
+        navigate("/404") 
+       
+    })
+         }
+        
 
     }, [params])
 
     return (
-        <>
-            {load ? null : 'Cargando...'}
-            <ItemList productos={productos}/>
-        </>
+        <div className="card-container">
+            <div className="card-container__text"><img src="../img/texto-simulado.png" alt="vinilos en stock" /></div>
+         
+            <div>
+            {load ? <ItemList productos={productos}/> : <Loader/> }</div>
+        </div>
     )
 }
 

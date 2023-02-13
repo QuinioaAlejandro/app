@@ -1,29 +1,20 @@
 import { NavLink } from "react-router-dom"
+import CartWidget from "./CartWidget";
 
 
-const Nav = (props) => {
+const Navbar = (props) => {
 
-const isHeader = props.isHeader || false
-const textLinkFooter =props.textLinkFooter ||""
-const hrefLinkFooter =props.hrefLinkFooter ||""
-
-   if (isHeader)
-    return(
+return(
         <nav className="header__navbar">
-    <NavLink to="/">Home</NavLink>
-    <NavLink to="/ropa">Ropa</NavLink>\
-    <NavLink to="/ropa/femenina">Ropa femenina</NavLink>
-        <span className="material-icons">shopping_cart</span>
-    </nav>
+         <ul className="header__lista">  
+    <li className="header__link"><NavLink  to="/store/woman"> <img src="/../img/woman.png" alt="girls"></img></NavLink></li>
+    <li className="header__link"><NavLink  to="/store/man"> <img src="/../img/man.png" alt="boys"></img></NavLink></li>
+    <li className="header__link"> <NavLink  to="/store/all"> <img src="/../img/store.png" alt="store"></img></NavLink></li>
+    <li className="header__link"> <NavLink  to="/carrito"> <CartWidget/> </NavLink></li>
+    </ul>  </nav>
     )
 
-    else {
-        return (
-            <nav className="header__navbar">
-                <a href={props.hrefLinkFooter}>{props.textLinkFooter}</a>
-        
-            </nav>
-        )
-    }
+  
 }
-export default Nav;
+export default Navbar;
+

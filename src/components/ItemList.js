@@ -6,15 +6,17 @@ const ItemList = ({productos}) => {
 
     return(
         <div>
-            {productos.map((el)=>(<article key={el.id}>
+        <section className="item-container">
+            {productos.map((el)=>(
+            <article key={el.id}>
                 <Item 
-                nombre = {el.title}
-                precio = {el.price}
-                imagen = {el.image}
+                nombre = {el.titulo}
+                precio = {el.precio}
+                imagen = {el.imagen}
                 id = {el.id}
                 />
             </article>))}
-        </div>
+        </section></div>
     )
 }
 

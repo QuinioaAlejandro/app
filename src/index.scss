@@ -1,47 +1,211 @@
 @import url('https://fonts.googleapis.com/icon?family=Material+Icons');
 
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+    margin: 0;
+
+    box-sizing: border-box;
 }
 
-html , body , #root {
-  height: 100%;
-  
-}
-#root {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-.header{
-  background-color: aquamarine;
-  color: #FFFF1A;
-  padding: 0.5rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  box-shadow: 0 0 6px rgba(0, 0, 0, 2);
- 
-  &__link{
-    text-decoration: none;
-    color: white;
-    margin-left: 1rem;
-  }
-
-}
 
 .main{
   flex-grow: 1;
-  padding: 0.5rem;
+  padding: 2rem  0.5rem;
 }
 
-.footer{
-   background-color: aquamarine;
-   color: #fff;
-   padding: 0.5rem;
-   font-size: 0.75rem;
- 
+.item-margin{
+padding-top: 5rem;
+}
+
+
+.item-detail{  
+
+margin-top: 8rem;
+    width: 80vh;
+    border: #ffffff solid; 
+    color: #fff;
+    display: flex;
+    justify-content: space-evenly;
+    margin: 10vh auto;
+&__imagen {
+    padding: 5vh;
+}
+&__info{
+   
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+}
+
+.product-container {
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.product-card {
+    margin: 0vh 0vh 3vh 0vh;
+    color: #fff;    
+    background-color: transparent;
+    flex: 1 0 300px;
+    padding: 1px;
+    border: 0.05rem solid rgb(255, 255, 255);
+    box-shadow: 0 2px 6px #131313;
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    align-items: center;
+    flex-wrap: nowrap;
+
+
+    &__image{
+        flex-direction: row;
+        flex-wrap: nowrap;
+        align-items: center;
+        justify-content: flex-start;
+        padding: 2vh;
+        width: 40vh;
+        max-width: 200pxs;
+    }
+    
+    &__title{
+       font-size: 2.5rem;
+       font-weight: bold;
+    }
+
+    &__precio{
+        font-size: 2rem;
+        font-weight: 600;
+    }
+    
+}
+
+.item-add-button{
+    color: rgb(255, 255, 255);
+}
+
+.item-container{
+    width: 60rem;
+}
+
+html,
+body,
+#root {
+    color: #ffffff;
+    background-image: url(../public/img/fondolvinilo.jpg);
+    height: 100%;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+
+}
+#root {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.header {
+   
+    height: 5rem;
+    border: 0.01rem   solid #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 0 6px rgba(0, 0, 0, 2);
+    align-items: center;
+    width: 100%;
+    position: fixed;
+  
+
+    &__link {
+        height: 5rem;
+        border: 0.07rem  solid #fff;
+      
+    }
+    &__lista{
+        display: flex;
+        margin-bottom: 0!important;
+    }
+
+}
+
+.principal{
+    padding-top: 5rem;
+    display: flex;
+  
+  overflow: hidden;
+    &__imagenes{
+        padding-top: 10vh;
+      width: auto;
+   }
+}
+
+.main {
+    flex-grow: 1;
+    padding: 0.5rem;
+}
+
+.footer {
+    color: #fff;
+    padding: 0.5rem;
+    font-size: 0.75rem;
+
+}
+
+.error{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-wrap: wrap;
+    padding-top: 15rem;
+   
+}
+
+.cart{
+    position: relative;
+   
+    &__counter{
+        top: 1rem;   
+        right: 4rem;    
+        justify-content: center;
+        display: flex;
+        width: 1.5rem;
+        color: #fff;
+        text-decoration: none;
+        background-color: red;
+        border-radius: 50%;
+        position: absolute;        
+        }
+
+}
+
+.card-container{
+    padding-top: 10rem;
+    display: flex;
+}
+
+.cart-cards{
+    width: 80vh;
+    border: #ffffff solid; 
+    color: #fff;
+    display: flex;
+    justify-content: space-evenly;
+    margin: 10vh auto;
+    &__info{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+    }
+
+    &__imagen{
+        padding: 5vh;
+    }
+}
+
+.form{
+    display: flex;
+ flex-wrap: wrap;
+   
+padding: 5vh;
+    border: #ffffff solid;
 }

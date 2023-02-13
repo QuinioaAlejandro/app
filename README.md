@@ -70,3 +70,9 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
 
 
+# quinoto records
+ Quinoto records un simulador ecommerce de venta de discos de vinilos.
+## librerias usadas 
+sweet alert
+
+## https://appef.vercel.app/

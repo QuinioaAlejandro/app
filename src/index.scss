@@ -209,3 +209,20 @@ body,
 padding: 5vh;
     border: #ffffff solid;
 }
+
+.cart-checkout{
+    padding: 2rem;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    &__text{
+        font-weight: bold;
+        font-size: 21px;
+    }
+
+    &__button{
+        background-color: transparent;
+    }
+}
